@@ -126,7 +126,7 @@ void loop() {
         sendDataPrevMillis = millis();
 
         FirebaseJson json;
-        Firebase JsonData result;
+        FirebaseJsonData result;
         for(int i = 0; i <= 30; i++) {
           json.set("Data" + String(i) , count + i);
         }
