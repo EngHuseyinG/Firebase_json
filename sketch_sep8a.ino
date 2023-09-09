@@ -133,7 +133,7 @@ void loop() {
             Serial.printf("Set json... %s\n", Firebase.updateNode(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
     
     if(Firebase.getJSON(fbdo, "test/json" + fbdo.pushName())) {
-       ((fbd.to<FirebaseJson>()).get(result,"Data1"));
+       ((fbdo.to<FirebaseJson>()).get(result,"Data1"));
 
           Serial.println(result.to<int>());
        
