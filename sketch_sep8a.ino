@@ -10,13 +10,13 @@
 
 
 /* 1. Define the WiFi credentials */
-#define WIFI_SSID "T"
-#define WIFI_PASSWORD "tugra9205"
+#define WIFI_SSID "ssid"
+#define WIFI_PASSWORD "pw"
 /* 2. Define the API Key */
-#define API_KEY "AIzaSyBKwzSP-x2P_yZ3LRTGT96ni1I2hbgP4VE"
+#define API_KEY "API_KEY"
 
 /* 3. Define the RTDB URL */
-#define DATABASE_URL "https://husiot-default-rtdb.firebaseio.com/" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
+#define DATABASE_URL "DATABASE_URL" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
 
 /* 4. Define the user Ema3il and password that alreadey registerd or added in your project */
 #define USER_EMAIL "esp3232@gmail.com"
@@ -126,13 +126,18 @@ void loop() {
         sendDataPrevMillis = millis();
 
         FirebaseJson json;
-
+        Firebase JsonData result;
         for(int i = 0; i <= 30; i++) {
           json.set("Data" + String(i) , count + i);
         }
             Serial.printf("Set json... %s\n", Firebase.updateNode(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
     
-    if(Firebase.getJSON(fbdo, "test/json" + fbdo.pushName())) {}
+    if(Firebase.getJSON(fbdo, "test/json" + fbdo.pushName())) {
+       ((fbd.to<FirebaseJson>()).get(result,"Data1"));
+
+          Serial.println(result.to<int>());
+       
+    }
 
  Serial.println("Süre:" + String(millis()-sendDataPrevMillis)); 
  count++;
