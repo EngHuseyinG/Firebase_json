@@ -130,7 +130,10 @@ void loop() {
         for(int i = 0; i <= 30; i++) {
           json.set("Data" + String(i) , count + i);
         }
-            Serial.printf("Set json... %s\n", Firebase.updateNode(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
+                   //    Serial.printf("Set json... %s\n", Firebase.updateNode(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
+    
+
+              Serial.printf("Set json... %s\n", Firebase.setJSON(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
     
     if(Firebase.getJSON(fbdo, "test/json" + fbdo.pushName())) {
        ((fbdo.to<FirebaseJson>()).get(result,"Data1"));
